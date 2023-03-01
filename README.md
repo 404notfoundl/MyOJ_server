@@ -2,14 +2,26 @@
  * @Author: 
  * @Date: 2022-10-23 20:52:28
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-02-27 17:09:22
+ * @LastEditTime: 2023-03-01 14:23:24
  * @Description: 请填写简介
 -->
 # MyOJ_server
 项目的后端，基于 `django` 开发,实现了一些基本功能
-于容器位置 `/home/online_judge`
-[前端]()
-[评测机]()
+于容器位置 `/home/online_judge` 
+[前端](https://github.com/404notfoundl/MyOJ_web)
+[评测机](https://github.com/404notfoundl/MyOJ_judger)
+
+## 项目结构
+```shell
+.
+├── oj_tasks # 处理提交部分
+├── online_judge # 相关设置
+├── problem_lib # 题库
+├── site_config # 设置
+├── site_users # 用户
+├── solutions # 题解
+├── util # 常用工具
+```
 ## 配置
 * `deploy/docker-compose.yml`
   请根据需要修改 `environment` 相关选项，如密码等
@@ -57,5 +69,6 @@
 ## 添加管理员
 于 `server` 容器，项目根目录，虚拟环境内
 ```shell
-python manage.py createsuperuser
+source venv/bin/activate # 进入虚拟环境
+python manage.py createsuperuser # 创建管理员
 ```
