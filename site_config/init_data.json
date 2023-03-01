@@ -1,0 +1,16 @@
+[
+  {
+    "model": "site_config.SiteConfig",
+    "pk": "accessible",
+    "fields": {
+      "value": "{\"announcement\": 0}"
+    }
+  },
+  {
+    "model": "site_config.SiteConfig",
+    "pk": "announcement",
+    "fields": {
+      "value": "# 欢迎"
+    }
+  }
+]
