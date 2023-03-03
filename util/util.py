@@ -82,7 +82,7 @@ class SiteEMail:
     template_str = '''
             <h1>感谢您的注册，请点击以下链接以完成注册</h1> \n
             <h2>有效时间：1 小时,请及时验证</h2>\n
-            <a href=%s>点击此处</a>            
+            <a href="{0}">{0}</a>            
     '''
     timeout = 3600
 
@@ -92,16 +92,16 @@ class SiteEMail:
             raise ValueError("目的地址不能为空")
         res = True
         try:
-            msg = MIMEText(cls.template_str % link, 'html', 'utf-8')
+            msg = MIMEText(cls.template_str.format(link), 'html', 'utf-8')
             msg['From'] = settings.EMAIL_FROM
             msg['To'] = to_email
             msg['Subject'] = cls.title
-            smtp = smtplib.SMTP_SSL(settings.EMAIL_HOST)
-            smtp.connect(settings.EMAIL_HOST, settings.EMAIL_PORT)
+            smtp = smtplib.SMTP_SSL(settings.EMAIL_HOST, settings.EMAIL_PORT)
+            # smtp.connect(settings.EMAIL_HOST, settings.EMAIL_PORT)
             smtp.ehlo("smtp.qq.com")
             smtp.login(settings.EMAIL_FROM, settings.EMAIL_HOST_PASSWORD)
             smtp.sendmail(settings.EMAIL_FROM, to_email, msg.as_string())
-            smtp.close()
+            smtp.quit()
         except Exception as e:
             site_log("django.request").warning("send email failed: {}".format(e.args))
             res = False
